@@ -3,6 +3,8 @@ import peewee as pw
 import datetime
 from database import db
 
+db = PostgresqlExtDatabase(os.getenv('DATABASE'))
+
 
 class BaseModel(pw.Model):
     created_at = pw.DateTimeField(default=datetime.datetime.now)
