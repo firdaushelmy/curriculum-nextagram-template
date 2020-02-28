@@ -1,0 +1,21 @@
+{% extends "_layout.html" %}
+{% block content %}
+
+<h1>Log In Bish</h1>
+
+<form action={{ url_for('log_user') }} method="POST" id="log_user">
+  <div class="form-group">
+    
+    <label for="username">Username:</label>
+    <input type="text" name="username_log" class="form=control" />
+
+    <label for="email">Email:</label>
+    <input type="email" name="email_log" class="form-control" />
+
+    <label for="password">Password:</label>
+    <input type="password" name="password_log" class="form-control" />
+
+    <button type="submit" class="btn btn-primary">Log in BISH!</button>
+  </div>
+</form>
+{% endblock %}

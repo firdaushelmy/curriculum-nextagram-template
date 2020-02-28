@@ -13,6 +13,12 @@ def new():
 
 @users_blueprint.route('/', methods=['POST'])
 def create():
+    password = request.form['password_log']
+    if len(pasword) > 6 and re.search(r"[a-zA-Z]", password) and re.search(r"[\W]", password):
+        hashed_password = generate_password_hash(password)
+        u = User(
+            username=request.form['username_form']
+        )
     pass
 
 
