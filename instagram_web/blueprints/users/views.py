@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template
+import re
+from flask import Blueprint, render_template, request
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 users_blueprint = Blueprint('users',
@@ -9,17 +11,6 @@ users_blueprint = Blueprint('users',
 @users_blueprint.route('/new', methods=['GET'])
 def new():
     return render_template('users/new.html')
-
-
-@users_blueprint.route('/', methods=['POST'])
-def create():
-    password = request.form['password_log']
-    if len(pasword) > 6 and re.search(r"[a-zA-Z]", password) and re.search(r"[\W]", password):
-        hashed_password = generate_password_hash(password)
-        u = User(
-            username=request.form['username_form']
-        )
-    pass
 
 
 @users_blueprint.route('/<username>', methods=["GET"])

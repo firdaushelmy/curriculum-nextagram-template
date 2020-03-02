@@ -6,6 +6,7 @@ from models.base_model import db
 from models.user import User
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'instagram_web')
 
