@@ -12,6 +12,7 @@ users_blueprint = Blueprint('users',
 @users_blueprint.route('/new', methods=['GET'])
 def new():
     return render_template('users/new.html')
+    pass
 
 
 @users_blueprint.route('/<username>', methods=["GET"])
@@ -31,15 +32,13 @@ def index():
 def edit(id):
     if not str(current_user.id) == id:  # this is the current user
         flash('you are not authorised to view this page fool', 'danger')
-        return redirect(url_for('users.index'))
-
+        # return redirect(url_for('users.index'))
     user = User.get_or_none(User.id == id)
-
     if not user:
-        flash('No user found with hte id provided', 'warning')
+        flash('No user found with with the provided ID', 'warning')
         return redirect(url_for('users.index'))
 
-    return render_template('users/edit.html', user=user)
+    return render_template('users/editprofile.html', user=user)
 
 
 @users_blueprint.route('/<id>', methods=['POST'])
@@ -63,4 +62,4 @@ def update(id):
         return redirect(url_for('users.edit', id=user.id))
 
     flash('Successfully updated your details', 'success')
-    return redirect(url_for('users.edit', id=user.id))
+    return redirect(url_for('users.templates.users.editprofile', id=user.id))
