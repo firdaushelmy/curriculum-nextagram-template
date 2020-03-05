@@ -11,6 +11,7 @@ from models.user import User
 from flask_wtf.csrf import CSRFProtect
 import config
 import os
+from instagram_web.util.googleauth import oauth
 
 
 assets = Environment(app)
@@ -26,6 +27,8 @@ csrf.init_app(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+oauth.init_app(app)
 
 
 @app.errorhandler(500)
