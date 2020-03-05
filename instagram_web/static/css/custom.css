@@ -5,6 +5,17 @@ body {
   min-height: 100vh;
 }
 
+#user-posts {
+  margin: 0px 100px 0px 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#user-post:hover {
+  cursor: pointer;
+}
+
 footer {
   font-size: 11px;
   position: absolute;

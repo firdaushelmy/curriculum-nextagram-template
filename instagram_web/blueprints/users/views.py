@@ -14,30 +14,37 @@ def new():
     return render_template('users/editprofile.html')
 
 
-# @users_blueprint.route('/<username>', methods=["GET"])
-# def show(username):
-#     pass
+@users_blueprint.route('/<username>', methods=["GET"])
+def show(username):
+    if not current_user.username == username:
+        flash("who you.")
+    else:
+        user = User.get_or_none(User.username == username)
+        if not user:
+            flash("no user found for username provided.")
+        else:
+            return render_template("users/show.html")
 
 
-@users_blueprint.route('/<id>/edit', methods=["GET"])
+@users_blueprint.route('/', methods=["GET"])
 @login_required
-def index(id):
+def index():
     users = User.select()
-    return render_template('users/editprofile.html', users=users)
+    return render_template('index.html', users=users)
 
 
-# @users_blueprint.route('/<id>/edit', methods=['POST'])
-# @login_required
-# def edit(id):
-#     if not str(current_user.id) == id:
-#         flash('you are not authorised to view this page fool', 'danger')
-#         return redirect(url_for('users.index'))
-#     else:
-#         user = User.get_or_none(User.id == current_user.id)
-#         if not user:
-#             flash('No user found with with the provided ID', 'warning')
-#         else:
-#             return render_template('users/editprofile.html', user=user)
+@users_blueprint.route('/<id>/edit', methods=['POST'])
+@login_required
+def edit(id):
+    if not str(current_user.id) == id:
+        flash('you are not authorised to view this page fool', 'danger')
+        return redirect(url_for('users.index'))
+    else:
+        user = User.get_or_none(User.id == current_user.id)
+        if not user:
+            flash('No user found with with the provided ID', 'warning')
+        else:
+            return render_template('users/editprofile.html', user=user)
 
 
 @users_blueprint.route('/<id>', methods=['POST'])
