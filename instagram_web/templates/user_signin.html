@@ -4,6 +4,8 @@
 
 <form action={{ url_for('create_user') }} method="POST" id="create_user">
   <div class="form-group">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
     <label for="username">Username:</label>
     <input type="text" name="username_form" class="form-control" />
 
